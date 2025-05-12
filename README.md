@@ -1,6 +1,6 @@
 ﻿# MAAR: A Multimodal Benchmark for Animal Re-Identification with Environmental Metadata
 
-## Abstract
+## Introduction
 The Metadata Augmented Animal Re-Identification (MAAR) dataset is a multimodal benchmark designed to improve animal re-identification (Animal ReID) by integrating environmental metadata with visual data. Unlike existing datasets that rely solely on images, MAAR includes 20,890 images spanning six representative species, each image is paired with metadata such as temperature and circadian rhythms, providing valuable context for distinguishing individual animals. Additionally, to facilitate the use of metadata in existing ReID methods, we propose the Meta-Feature Adapter (MFA), a lightweight module that can be incorporated into existing vision-language model (VLM)-based Animal ReID methods, allowing ReID models to leverage both environmental metadata and visual information to improve ReID performance. Our experiments on MAAR show that incorporating metadata with MFA consistently improves ReID performance over using visual data alone. We hope that our benchmark can inspire further exploration of multimodal approaches for Animal ReID.
 
 
@@ -10,7 +10,7 @@ Our dataset is accessible through:
 
 ## Supplementary Material
 
-## Architecture
+## Method
 ![MFA Architecture](fig/MFA.png)
 
 ## Installation
@@ -27,7 +27,7 @@ pip install regex
 ```
 
 ## Training
-```
+```python
 python train_mfareid.py --config_file configs/animal/vit_mfareid.yml
 ```
 <!-- For inquiries about early access to the dataset for research purposes, please contact [contact information]. -->
