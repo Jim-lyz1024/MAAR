@@ -1,0 +1,201 @@
+MODEL:
+  PRETRAIN_CHOICE: 'imagenet'
+  METRIC_LOSS_TYPE: 'triplet'
+  IF_LABELSMOOTH: 'on'
+  IF_WITH_CENTER: 'no'
+  NAME: 'ViT-B-16'
+  STRIDE_SIZE: [16, 16]
+  ID_LOSS_WEIGHT : 0.25
+  TRIPLET_LOSS_WEIGHT : 1.0
+  I2T_LOSS_WEIGHT : 1.0
+  # SIE_CAMERA: True
+  # SIE_COE : 1.0
+
+INPUT:
+  SIZE_TRAIN: [256, 128]
+  SIZE_TEST: [256, 128]
+  PROB: 0.5 # random horizontal flip
+  RE_PROB: 0.5 # random erasing
+  PADDING: 10
+  PIXEL_MEAN: [0.5, 0.5, 0.5]
+  PIXEL_STD: [0.5, 0.5, 0.5]
+
+DATALOADER:
+  SAMPLER: 'softmax_triplet'
+  NUM_INSTANCE: 4
+  NUM_WORKERS: 8
+
+###################### Metadata ######################
+# SOLVER:
+#   STAGE1:
+#     IMS_PER_BATCH: 64
+#     OPTIMIZER_NAME: "Adam"
+#     BASE_LR: 0.00015
+#     WARMUP_LR_INIT: 0.00001
+#     LR_MIN: 1e-6
+#     WARMUP_METHOD: 'linear'
+#     WEIGHT_DECAY:  1e-4
+#     WEIGHT_DECAY_BIAS: 1e-4
+#     # MAX_EPOCHS: 40
+#     MAX_EPOCHS: 4
+#     CHECKPOINT_PERIOD: 50
+#     LOG_PERIOD: 10
+#     WARMUP_EPOCHS: 5
+  
+#   STAGE2:
+#     IMS_PER_BATCH: 64
+#     # IMS_PER_BATCH: 16
+#     OPTIMIZER_NAME: "Adam"
+#     # BASE_LR: 0.000001
+#     BASE_LR: 0.0001
+#     WARMUP_METHOD: 'linear'
+#     WARMUP_ITERS: 10
+#     WARMUP_FACTOR: 0.1
+#     WEIGHT_DECAY:  0.0001
+#     WEIGHT_DECAY_BIAS: 0.0001
+#     LARGE_FC_LR: False
+#     MAX_EPOCHS: 45
+#     CHECKPOINT_PERIOD: 45
+#     LOG_PERIOD: 10
+#     EVAL_PERIOD: 45
+#     BIAS_LR_FACTOR: 2
+    
+#     STEPS: [30, 50]
+#     GAMMA: 0.1
+###################### Metadata ######################
+
+###################### ReID ######################
+SOLVER:
+  STAGE1:
+    IMS_PER_BATCH: 64
+    OPTIMIZER_NAME: "Adam"
+    BASE_LR: 0.00015
+    WARMUP_LR_INIT: 0.00001
+    LR_MIN: 1e-6
+    WARMUP_METHOD: 'linear'
+    WEIGHT_DECAY:  1e-4
+    WEIGHT_DECAY_BIAS: 1e-4
+    # MAX_EPOCHS: 50
+    MAX_EPOCHS: 5
+    CHECKPOINT_PERIOD: 50
+    LOG_PERIOD: 10
+    WARMUP_EPOCHS: 5
+  
+  STAGE2:
+    # IMS_PER_BATCH: 64
+    IMS_PER_BATCH: 16
+    OPTIMIZER_NAME: "Adam"
+    BASE_LR: 0.000001
+    WARMUP_METHOD: 'linear'
+    WARMUP_ITERS: 10
+    WARMUP_FACTOR: 0.1
+    WEIGHT_DECAY:  0.0001
+    WEIGHT_DECAY_BIAS: 0.0001
+    LARGE_FC_LR: False
+    # MAX_EPOCHS: 45
+    MAX_EPOCHS: 50
+    CHECKPOINT_PERIOD: 50
+    LOG_PERIOD: 10
+    EVAL_PERIOD: 50
+    BIAS_LR_FACTOR: 2
+    
+    STEPS: [30, 50]
+    GAMMA: 0.1
+###################### ReID ######################
+
+TEST:
+  EVAL: True
+  IMS_PER_BATCH: 64
+  RE_RANKING: False
+  WEIGHT: ''
+  NECK_FEAT: 'before'
+  FEAT_NORM: 'yes'
+
+
+
+# DATASETS:
+#   NAMES: ('deer')
+#   ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets_meta/")
+# OUTPUT_DIR: '/data/yil708/Code-MFA-ReID/tests/Deer/MFA-ReID'
+
+DATASETS:
+  NAMES: ('hare')
+  ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets_meta/")
+OUTPUT_DIR: '/data/yil708/Code-MFA-ReID/tests/Hare/MFA-ReID'
+
+# DATASETS:
+#   NAMES: ('penguin')
+#   ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets_meta/")
+# OUTPUT_DIR: '/data/yil708/Code-MFA-ReID/tests/Stoat/MFA-ReID'
+
+# DATASETS:
+#   NAMES: ('pukeko')
+#   ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets_meta/")
+# OUTPUT_DIR: '/data/yil708/Code-MFA-ReID/tests/Pukeko/MFA-ReID'
+
+# DATASETS:
+#   NAMES: ('wallaby')
+#   ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets_meta/")
+# OUTPUT_DIR: '/data/yil708/Code-MFA-ReID/tests/Wallaby/MFA-ReID'
+
+# DATASETS:
+#   NAMES: ("stoat")
+#   # ROOT_DIR: ("/data/yil708/Code-MFA-ReID/Meta-Feature-Adapter/data/")
+#   ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets_meta/")
+# OUTPUT_DIR: "/data/yil708/Code-MFA-ReID/tests/Stoat/MFA-ReID"
+
+# DATASETS:
+#   NAMES: ("stoat")
+#   ROOT_DIR: ("data/")
+# OUTPUT_DIR: "scripts/Stoat"
+
+
+#DATASETS:
+#   NAMES: ("atrw")
+#   ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets/")
+#OUTPUT_DIR: "/data/yil708/Code-MFA-ReID/tests/ATRW/CoOp"
+
+
+# DATASETS:
+#   NAMES: ("friesiancattle2017")
+#   ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets/")
+# OUTPUT_DIR: "/data/yil708/Code-MFA-ReID/tests/FriesianCattle2017/CoOp"
+
+
+#DATASETS:
+#   NAMES: ("lion")
+#   ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets/")
+#OUTPUT_DIR: "/data/yil708/Code-MFA-ReID/tests/Lion/CoOp"
+
+
+#DATASETS:
+   #NAMES: ("mpdd")
+   # ROOT_DIR: ("/data/ywu840/dissertation")
+   #ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets/")
+#OUTPUT_DIR: "/data/yil708/Code-MFA-ReID/tests/MPDD/CoOp/"
+
+
+#DATASETS:
+#   NAMES: ("ipanda50")
+#   ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets/")
+#OUTPUT_DIR: "/data/yil708/Code-MFA-ReID/tests/iPanda50/CoOp"
+
+
+# DATASETS:
+#    NAMES: ("seastar")
+#    ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets/")
+# OUTPUT_DIR: "/data/yil708/Code-MFA-ReID/tests/SeaStar/CoOp"
+
+
+#DATASETS:
+#   NAMES: ("nyala")
+#   ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets/")
+#OUTPUT_DIR: "/data/yil708/Code-MFA-ReID/tests/Nyala/CoOp"
+
+
+#DATASETS:
+ #  NAMES: ("polarbear")
+#   ROOT_DIR: ("/data/yil708/Code-MFA-ReID/datasets/")
+#OUTPUT_DIR: "/data/yil708/Code-MFA-ReID/tests/PolarBear/CoOp"
+
+# CUDA_VISIBLE_DEVICES=1 python train_mfareid.py --config_file configs/animal/vit_mfapreid.yml
