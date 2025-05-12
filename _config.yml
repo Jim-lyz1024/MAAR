@@ -1,0 +1,6 @@
+title: MAAR Project
+description: Metadata Augmented Animal Re-Identification (MAAR)
+theme: minimal
+markdown: kramdown
+plugins:
+  - jekyll-sitemap
