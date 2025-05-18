@@ -13,7 +13,7 @@ We evaluate our approach using several state-of-the-art ReID methods:
 Our evaluation employs two standard metrics in ReID tasks:
 
 - **Mean Average Precision (mAP)**: Measures retrieval performance by calculating the average precision across all queries.  
-- **Cumulative Matching Characteristic (CMC)**: Measures the rate at which the correct match appears within the top-$k$ nearest neighbors. We specifically report **CMC-1**.
+- **Cumulative Matching Characteristic (CMC)**: Measures the rate at which the correct match appears within the top-k nearest neighbors. We specifically report **CMC-1**.
 
 Performance measures are averaged over **ten runs** with corresponding **95% confidence intervals**.
 
@@ -23,8 +23,8 @@ Performance measures are averaged over **ten runs** with corresponding **95% con
 - **Framework**: PyTorch  
 - **Backbone**: ViT-B/16  
 - **Optimizer**: Adam with a momentum of 0.9 and weight decay of $1 \times 10^{-4}$.  
-- **Learning Rate**: Initial rate of $1 \times 10^{-6}$, decaying by a factor of 0.1 every 10 epochs.  
+- **Learning Rate**: Initial rate of 1 × 10⁻⁶, decaying by a factor of 0.1 every 10 epochs.  
 - **Training Epochs**: 50  
 - **Batch Size**: 16  
-- **Image Resolution**: $256 \times 128$  
+- **Image Resolution**: 256 × 128  
 - **Hardware**: NVIDIA Tesla A100 GPUs
