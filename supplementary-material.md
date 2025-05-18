@@ -1,13 +1,15 @@
-### Experiment Setting
-#### 🚀 Baselines
+# Experiment Setting
+## 🚀 Baselines
 We evaluate our approach using several state-of-the-art ReID methods:
 
 - **CLIP-ReID**: Adapts CLIP for human and vehicle ReID, achieving state-of-the-art performance.  
 - **ReID-AW**: A recent universal Animal ReID model that uses dynamic visual prompts and semantic knowledge from large language models.  
 - **CLIP Fine-Tuning (CLIP-FT)**: A variant that fine-tunes only the CLIP image encoder without additional modifications.  
 - **CLIP-ZeroShot (CLIP-ZS)**: Directly applies CLIP in a zero-shot setting for ReID.
+
 ---
-#### 📈 Evaluation Metrics
+
+## 📈 Evaluation Metrics
 Our evaluation employs two standard metrics in ReID tasks:
 
 - **Mean Average Precision (mAP)**: Measures retrieval performance by calculating the average precision across all queries.  
@@ -16,7 +18,8 @@ Our evaluation employs two standard metrics in ReID tasks:
 Performance measures are averaged over **ten runs** with corresponding **95% confidence intervals**.
 
 ---
-#### 📝 Reproducibility Details
+
+## 📝 Reproducibility Details
 - **Framework**: PyTorch  
 - **Backbone**: ViT-B/16  
 - **Optimizer**: Adam with a momentum of 0.9 and weight decay of $1 \times 10^{-4}$.  
