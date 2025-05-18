@@ -7,7 +7,7 @@ We evaluate our approach using several state-of-the-art ReID methods:
 - **CLIP Fine-Tuning (CLIP-FT)**: A variant that fine-tunes only the CLIP image encoder without additional modifications.  
 - **CLIP-ZeroShot (CLIP-ZS)**: Directly applies CLIP in a zero-shot setting for ReID.
 
----
+* * *
 
 ## 📈 Evaluation Metrics
 Our evaluation employs two standard metrics in ReID tasks:
@@ -17,7 +17,7 @@ Our evaluation employs two standard metrics in ReID tasks:
 
 Performance measures are averaged over **ten runs** with corresponding **95% confidence intervals**.
 
----
+* * *
 
 ## 📝 Reproducibility Details
 - **Framework**: PyTorch  
