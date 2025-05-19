@@ -22,7 +22,7 @@ Performance measures are averaged over **ten runs** with corresponding **95% con
 ## 📝 Reproducibility Details
 - **Framework**: PyTorch  
 - **Backbone**: ViT-B/16  
-- **Optimizer**: Adam with a momentum of 0.9 and weight decay of $1 \times 10^{-4}$.  
+- **Optimizer**: Adam with a momentum of 0.9 and weight decay of 1 × 10⁻⁴.  
 - **Learning Rate**: Initial rate of 1 × 10⁻⁶, decaying by a factor of 0.1 every 10 epochs.  
 - **Training Epochs**: 50  
 - **Batch Size**: 16  
