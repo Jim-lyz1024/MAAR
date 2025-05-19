@@ -1,34 +1,4 @@
-# Experiment Setting
-## Baselines
-We evaluate our approach using several state-of-the-art ReID methods:
-
-- **CLIP-ReID**: Adapts CLIP for human and vehicle ReID, achieving state-of-the-art performance.  
-- **ReID-AW**: A recent universal Animal ReID model that uses dynamic visual prompts and semantic knowledge from large language models.  
-- **CLIP Fine-Tuning (CLIP-FT)**: A variant that fine-tunes only the CLIP image encoder without additional modifications.  
-- **CLIP-ZeroShot (CLIP-ZS)**: Directly applies CLIP in a zero-shot setting for ReID.
-
-
-## Evaluation Metrics
-Our evaluation employs two standard metrics in ReID tasks:
-
-- **Mean Average Precision (mAP)**: Measures retrieval performance by calculating the average precision across all queries.  
-- **Cumulative Matching Characteristic (CMC)**: Measures the rate at which the correct match appears within the top-k nearest neighbors. We specifically report **CMC-1**.
-
-Performance measures are averaged over **ten runs** with corresponding **95% confidence intervals**.
-
-## Reproducibility Details
-- **Framework**: PyTorch  
-- **Backbone**: ViT-B/16  
-- **Optimizer**: Adam with a momentum of 0.9 and weight decay of 1 × 10⁻⁴.  
-- **Learning Rate**: Initial rate of 1 × 10⁻⁶, decaying by a factor of 0.1 every 10 epochs.  
-- **Training Epochs**: 50  
-- **Batch Size**: 16  
-- **Image Resolution**: 256 × 128  
-- **Hardware**: NVIDIA Tesla A100 GPUs
-
-* * *
-
-# Ablation Study
+# Supplementary Material: Ablation Study
 ## **Effect of Fusion Strategies**
 To investigate the effect of different fusion strategies for integrating metadata with visual features in our ReID models, we conducted a comprehensive ablation study. We compared three fusion approaches:
 
@@ -52,10 +22,11 @@ The results of this comparison are presented in **Table 1**. Basic Fusion (BF) p
 |              | CA        | 71.5±.1      | 96.2±.2        | 65.4±.3      | 95.2±.2        | 54.2±.3         | 69.8±.2           | 60.8±.2         | 84.5±.2         | 73.2±.3        | 94.2±.2           | 62.5±.2           | 91.9±.4           |
 |              | GCA       | **72.4±.2**  | **97.0±.2**    | **66.2±.1**  | **96.8±.2**    | **55.3±.4**     | **70.8±.4**       | **61.8±.2**     | **86.7±.3**     | **74.1±.4**    | **95.0±.2**       | **63.5±.1**       | **92.7±.2**       |
 
-**Table 1. Ablation Study: Impact of Fusion Strategies (Basic Fusion, Cross-Attention, and Gated Cross-Attention) on mAP and CMC-1 performance across six species. Bold values indicate the highest performance within each model.**
+Table 1. Ablation Study: Impact of Fusion Strategies (Basic Fusion, Cross-Attention, and Gated Cross-Attention) on mAP and CMC-1 performance across six species. Bold values indicate the highest performance within each model.
 
 **Key Observations**
 - **Gated Cross-Attention (GCA)** consistently achieves the best performance, demonstrating its ability to adaptively balance metadata and visual information.
 - The improvements are particularly notable for the ReID-AW model, with GCA achieving a **2.2% mAP gain on Deer** and **2.8% on Penguin** compared to BF.
 - The flexibility of GCA allows it to enhance metadata contribution in visually ambiguous cases while minimizing its impact when visual features are distinctive.
 
+* * *

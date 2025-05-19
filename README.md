@@ -8,7 +8,8 @@ Our dataset is accessible through:
 * [Hugging face](https://huggingface.co/datasets/uqtwei2/PlantWild)
 
 ## Supplementary Material
-Experiment settings and ablation study: [Supplementary Material](./supplementary-material.html).
+Experiment settings: [Supplementary Material](./supplementary-experiment.html) and 
+Ablation study: [Supplementary Ablation](./supplementary-ablation.html).
 
 ## Method
 ![MFA Architecture](fig/MFA.png)
