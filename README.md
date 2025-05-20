@@ -8,8 +8,17 @@ Our dataset is accessible through:
 * [Hugging face](https://huggingface.co/datasets/uqtwei2/PlantWild)
 
 ## Supplementary Material
-Experiment settings: [Supplementary Material - Experiment](./supplementary-experiment.html) and 
-Ablation study: [Supplementary Material - Ablation](./supplementary-ablation.html).
+
+<!-- Experiment settings: [Supplementary Material - Experiment](./supplementary-experiment.html) and 
+Ablation study: [Supplementary Material - Ablation](./supplementary-ablation.html). -->
+
+This section provides detailed supplementary materials to support the main findings presented in the MAAR project. Our supplementary materials are divided into two key sections:
+
+- **Experiment Settings:** This section provides a comprehensive description of the experimental setup used in our study, including details on the benchmark dataset, baseline models, evaluation metrics, and reproducibility information. For detailed information, please refer to the following link:  
+  ➡️ [Supplementary Material - Experiment Settings](./supplementary-experiment.html)
+
+- **Ablation Study:** This section presents the ablation study that explores the effect of various design choices and metadata features on ReID performance, please refer to the following link:  
+  ➡️ [Supplementary Material - Ablation Study](./supplementary-ablation.html)
 
 ## Method
 ![MFA Architecture](fig/MFA.png)
