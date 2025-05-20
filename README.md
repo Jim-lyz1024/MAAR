@@ -15,7 +15,7 @@ Ablation study: [Supplementary Material - Ablation](./supplementary-ablation.htm
 This section provides detailed supplementary materials to support the main findings presented in the MAAR project. Our supplementary materials are divided into two key sections:
 
 - **Experiment Settings:** This section provides a comprehensive description of the experimental setup used in our study, including details on the benchmark dataset, baseline models, evaluation metrics, and reproducibility information. For detailed information, please refer to the following link:  
-  ➡️ [Supplementary Material - Experiment Settings](./supplementary-experiment.html)
+  ➡️ [Supplementary Material - Experiment Settings and Reproducibility](./supplementary-experiment.html)
 
 - **Ablation Study:** This section presents the ablation study that explores the effect of various design choices and metadata features on ReID performance, please refer to the following link:  
   ➡️ [Supplementary Material - Ablation Study](./supplementary-ablation.html)
@@ -23,21 +23,5 @@ This section provides detailed supplementary materials to support the main findi
 ## Method
 ![MFA Architecture](fig/MFA.png)
 
-## Installation
-```python
-conda create -n 'your-env-name' python=3.8
-conda activate 'your-env-name'
-conda install pytorch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0 cudatoolkit=10.2 -c pytorch
-pip install yacs
-pip install timm
-pip install scikit-image
-pip install tqdm
-pip install ftfy
-pip install regex
-```
 
-## Training
-```python
-python train_mfareid.py --config_file configs/animal/vit_mfareid.yml
-```
 <!-- For inquiries about early access to the dataset for research purposes, please contact [contact information]. -->

@@ -26,6 +26,19 @@ Performance measures are averaged over **ten runs** with corresponding **95% con
 - **Image Resolution**: 256 × 128  
 - **Hardware**: NVIDIA Tesla A100 GPUs
 
+## Installation
+```python
+conda create -n 'your-env-name' python=3.8
+conda activate 'your-env-name'
+conda install pytorch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0 cudatoolkit=10.2 -c pytorch
+pip install yacs
+pip install timm
+pip install scikit-image
+pip install tqdm
+pip install ftfy
+pip install regex
+```
+
 To reproduce the animal re-identification experiments, use the following command:
 ```python
 python train_mfareid.py --config_file configs/animal/vit_mfareid.yml
