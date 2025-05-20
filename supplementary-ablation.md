@@ -1,5 +1,5 @@
 # Supplementary Material: Ablation Study
-## **Effect of Fusion Strategies**
+## Effect of Fusion Strategies
 To investigate the effect of different fusion strategies for integrating metadata with visual features in our ReID models, we conducted a comprehensive ablation study. We compared three fusion approaches:
 
 - **Basic Fusion (BF)**: This approach directly concatenates metadata embeddings with visual features, followed by a linear projection layer, providing a simple integration method without any interaction between the two modalities.
@@ -33,7 +33,7 @@ Our Gated Cross-Attention (GCA) achieves the best results, consistently outperfo
 
 * * *
 
-## **Effect of Different Metadata Features**
+## Effect of Different Metadata Features
 To investigate the contribution of each metadata feature and to identify potential interactions between different metadata combinations, we progressively integrated three types of metadata into our models: **Temperature (T)**, **Circadian Rhythm (C)**, and **Face Orientation (F)**. These features were incorporated in three ReID models: **CLIP-FT+MFA**, **CLIP-ReID+MFA**, and **ReID-AW+MFA**.
 
 <div style="text-align: center;">
@@ -82,7 +82,7 @@ The results of this ablation study are summarized in **Table 2**, which reveals 
 
 * * * 
 
-## **Effect of Noisy Metadata**
+## Effect of Noisy Metadata
 To evaluate the robustness of metadata and determine whether its benefits persist under noisy conditions, we introduced artificial noise into three metadata types: **Temperature (T)**, **Circadian Rhythm (C)**, and **Face Orientation (F)**. The noise levels were set at **30%**, **60%**, and **100%**, representing progressively higher levels of noise, the results are presented in **Table 3**.
 
 <!-- *Table 3(a): Temperature (T) - mAP (%)*
