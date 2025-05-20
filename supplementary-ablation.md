@@ -2,13 +2,12 @@
 ## **Effect of Fusion Strategies**
 To investigate the effect of different fusion strategies for integrating metadata with visual features in our ReID models, we conducted a comprehensive ablation study. We compared three fusion approaches:
 
-- **Basic Fusion (BF)**: This approach directly concatenates metadata embeddings with visual features, followed by a linear projection layer. It provides a simple integration method without any interaction between the two modalities.
+- **Basic Fusion (BF)**: This approach directly concatenates metadata embeddings with visual features, followed by a linear projection layer, providing a simple integration method without any interaction between the two modalities.
 
-- **Cross-Attention (CA)**: This strategy allows feature interaction by computing attention weights between metadata and visual features. This approach enables the model to dynamically focus on relevant metadata information.
+- **Cross-Attention (CA)**: This strategy allows feature interaction by computing attention weights between metadata and visual features.
 
-- **Gated Cross-Attention (GCA)**: Our proposed method further enhances cross-attention by introducing an adaptive gating mechanism. This gate dynamically adjusts the influence of metadata based on the relevance of visual content, allowing the model to balance between visual and metadata information.
+- **Gated Cross-Attention (GCA)**: Our proposed method further improves cross-attention by introducing an adaptive gating mechanism to control the influence of metadata based on visual content.
 
-The results of this comparison are presented in **Table 1**. Basic Fusion (BF) provides modest improvements across species, such as a **1.5% mAP gain on Deer** for the CLIP-FT model. Cross-Attention (CA) further enhances performance, particularly on datasets like Penguin, with **0.3% and 1.3% mAP improvements** for CLIP-FT and CLIP-ReID, respectively. Our Gated Cross-Attention (GCA) achieves the best results, consistently outperforming both BF and CA. For instance, GCA leads to a **2.5% mAP gain over BF** on Wallaby using the ReID-AW model. This improvement can be attributed to GCA's ability to adaptively control metadata influence based on visual content relevance. When visual features are highly distinctive, the gate reduces reliance on metadata, while for visually ambiguous cases, the gate increases metadata influence.
 
 | Model      | Strategy | Deer (mAP) | Deer (CMC-1) | Hare (mAP) | Hare (CMC-1) | Penguin (mAP) | Penguin (CMC-1) | Pūkeko (mAP) | Pūkeko (CMC-1) | Stoat (mAP) | Stoat (CMC-1) | Wallaby (mAP) | Wallaby (CMC-1) |
 |-------------|-----------|-------------|---------------|-------------|---------------|----------------|------------------|----------------|----------------|---------------|-----------------|------------------|------------------|
@@ -22,11 +21,10 @@ The results of this comparison are presented in **Table 1**. Basic Fusion (BF) p
 |              | CA        | 71.5±.1      | 96.2±.2        | 65.4±.3      | 95.2±.2        | 54.2±.3         | 69.8±.2           | 60.8±.2         | 84.5±.2         | 73.2±.3        | 94.2±.2           | 62.5±.2           | 91.9±.4           |
 |              | GCA       | **72.4±.2**  | **97.0±.2**    | **66.2±.1**  | **96.8±.2**    | **55.3±.4**     | **70.8±.4**       | **61.8±.2**     | **86.7±.3**     | **74.1±.4**    | **95.0±.2**       | **63.5±.1**       | **92.7±.2**       |
 
-Table 1. Ablation Study: Impact of Fusion Strategies (Basic Fusion, Cross-Attention, and Gated Cross-Attention) on mAP and CMC-1 performance across six species. Bold values indicate the highest performance within each model.
+*Table 1. Ablation Study: Impact of Fusion Strategies (Basic Fusion, Cross-Attention, and Gated Cross-Attention) on mAP and CMC-1 performance across six species. Bold values indicate the highest performance within each model.*
 
-**Key Observations**
-- **Gated Cross-Attention (GCA)** consistently achieves the best performance, demonstrating its ability to adaptively balance metadata and visual information.
-- The improvements are particularly notable for the ReID-AW model, with GCA achieving a **2.2% mAP gain on Deer** and **2.8% on Penguin** compared to BF.
-- The flexibility of GCA allows it to enhance metadata contribution in visually ambiguous cases while minimizing its impact when visual features are distinctive.
+The results of this comparison are presented in **Table 1**. Basic Fusion (BF) provides modest improvements across species, such as a 1.5% mAP gain on Deer for the CLIP-FT model. Cross-Attention (CA) strategy outperforms basic fusion by enabling selective feature integration, with particularly notable gains on datasets such as Penguin (0.3% and 1.3% mAP improvements for CLIP-FT and CLIP-ReID respectively). 
+
+Our Gated Cross-Attention (GCA) achieves the best results, consistently outperforming both BF and CA, GCA achieves the best results with improvements of up to 2.5% mAP over basic fusion. This pattern is also observed in the ReID-AW model, where GCA achieves substantial improvements over BF across all species (*e.g.*, 2.2% mAP gain on Deer and 2.8% on Penguin).This performance can be attributed to its ability to adaptively adjust metadata influence based on visual content relevance. For instance, when visual features are highly distinctive, the gate can reduce reliance on metadata while increasing metadata influence for visually ambiguous cases.
 
 * * *
