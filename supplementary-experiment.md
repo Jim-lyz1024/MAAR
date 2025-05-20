@@ -50,7 +50,7 @@ This command launches the training process for the MFA framework using the ViT b
 IMS_PER_BATCH: 16        # Training batch size
 OPTIMIZER_NAME: "Adam"
 BASE_LR: 0.000001        # Learning rate
-WARMUP_METHOD: `linear'
+WARMUP_METHOD: 'linear'
 WARMUP_ITERS: 10
 WARMUP_FACTOR: 0.1
 WEIGHT_DECAY:  0.0001
