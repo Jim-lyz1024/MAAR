@@ -9,7 +9,7 @@ To investigate the effect of different fusion strategies for integrating metadat
 - **Gated Cross-Attention (GCA)**: Our proposed method further improves cross-attention by introducing an adaptive gating mechanism to control the influence of metadata based on visual content.
 
 
-***Table 1. Ablation Study: Impact of Fusion Strategies (Basic Fusion, Cross-Attention, and Gated Cross-Attention) on mAP and CMC-1 performance across six species. Bold values indicate the highest performance within each model.***
+*Table 1. Ablation Study: Impact of Fusion Strategies (Basic Fusion, Cross-Attention, and Gated Cross-Attention) on mAP and CMC-1 performance across six species. Bold values indicate the highest performance within each model.*
 ![Ablation Study - Fusion](fig/ablation_fusion.png)
 <!-- | Model      | Strategy | Deer (mAP) | Deer (CMC-1) | Hare (mAP) | Hare (CMC-1) | Penguin (mAP) | Penguin (CMC-1) | Pūkeko (mAP) | Pūkeko (CMC-1) | Stoat (mAP) | Stoat (CMC-1) | Wallaby (mAP) | Wallaby (CMC-1) |
 |-------------|-----------|-------------|---------------|-------------|---------------|----------------|------------------|----------------|----------------|---------------|-----------------|------------------|------------------|
@@ -33,8 +33,9 @@ Our Gated Cross-Attention (GCA) achieves the best results, consistently outperfo
 To investigate the contribution of each metadata feature and to identify potential interactions between different metadata combinations, we progressively integrated three types of metadata into our models: **Temperature (T)**, **Circadian Rhythm (C)**, and **Face Orientation (F)**. These features were incorporated in three ReID models: **CLIP-FT+MFA**, **CLIP-ReID+MFA**, and **ReID-AW+MFA**.
 
 
-***Table 2. Ablation study on different combinations of metadata features in CLIP-FT+MFA, CLIP-ReID+MFA and ReID-AW+MFA models. Temperature (T), Circadian Rhythm (C), and Face Orientation (F) features are progressively combined to analyze their individual and combined effects on model ReID performance.***
-
+*Table 2. Ablation study on different combinations of metadata features in CLIP-FT+MFA, CLIP-ReID+MFA and ReID-AW+MFA models. Temperature (T), Circadian Rhythm (C), and Face Orientation (F) features are progressively combined to analyze their individual and combined effects on model ReID performance.*
+![Ablation Study - Metafeature](fig/ablation_metafeature.png)
+<!-- 
 *Table 2(a): CLIP-FT + MFA - mAP (%)*
 | T | C | F | Deer | Hare | Penguin | Pūkeko | Stoat | Wallaby |
 |---|---|---|------|------|---------|--------|-------|----------|
@@ -66,18 +67,18 @@ To investigate the contribution of each metadata feature and to identify potenti
 | ✅ | ✅ | - | 71.5 | 65.1 | 54.5    | 60.2   | 73.2  | 62.5     |
 | ✅ | - | ✅ | 71.2 | 65.4 | 54.2    | 60.3   | 73.5  | 62.2     |
 | - | ✅ | ✅ | 70.8 | 64.8 | 53.5    | 59.3   | 73.0  | 61.8     |
-| ✅ | ✅ | ✅ | **72.4** | **66.2** | **55.3** | **61.8** | **74.1** | **63.5** |
+| ✅ | ✅ | ✅ | **72.4** | **66.2** | **55.3** | **61.8** | **74.1** | **63.5** | -->
 
 The results of this ablation study are summarized in **Table 2**, which reveals the impact of each metadata type on model performance, as measured by mean Average Precision (mAP). The results show that temperature contributes most to ReID performance across all models, achieving the highest mAP. This aligns with zoological research showing that temperature significantly influences animal behavior and appearance[^1]. As the temperature fluctuates, animals may exhibit variations in posture, movement patterns, and even fur characteristics, providing additional discriminative features for ReID. Moreover, different individuals often show distinct temperature preferences and behavioral adaptations[^2], making temperature-related features valuable for ReID tasks. When combining all three metadata types (T+C+F), we observe the best performance across all datasets, suggesting that each metadata type contributes complementary information. 
-
 
 * * * 
 
 ## **Effect of Noisy Metadata**
 To evaluate the robustness of metadata and determine whether its benefits persist under noisy conditions, we introduced artificial noise into three metadata types: **Temperature (T)**, **Circadian Rhythm (C)**, and **Face Orientation (F)**. The noise levels were set at **30%**, **60%**, and **100%**, representing progressively higher levels of noise, the results are presented in **Table 3**.
 
-***Table 3. ReID-AW+MFA Performance with Noisy Metadata (mAP %)***
-*Table 3(a): Temperature (T) - mAP (%)*
+*Table 3. ReID-AW+MFA Performance with Noisy Metadata (mAP %)*
+![Ablation Study - Metafeature](fig/ablation_noise.png)
+<!-- *Table 3(a): Temperature (T) - mAP (%)*
 | Species | ReID-AW | T (Clean) | T (Noise-30%) | T (Noise-60%) | T (Noise-100%) |
 |----------|---------|------------|----------------|----------------|-----------------|
 | Deer     | 67.5±.3 | **70.2±.3** | 69.5±.3         | 68.4±.4         | 67.7±.2          |
@@ -105,7 +106,7 @@ To evaluate the robustness of metadata and determine whether its benefits persis
 | Penguin  | 48.8±.5 | **52.5±.3** | 52.9±.3         | 50.3±.3         | 49.0±.2          |
 | Pūkeko   | 58.5±.3 | **59.2±.2** | 58.2±.2         | 58.5±.2         | 58.2±.2          |
 | Stoat    | 69.5±.3 | **71.5±.4** | 70.7±.2         | 70.0±.3         | 69.4±.3          |
-| Wallaby  | 58.4±.3 | **60.8±.3** | 60.1±.3         | 59.3±.3         | 58.9±.3          |
+| Wallaby  | 58.4±.3 | **60.8±.3** | 60.1±.3         | 59.3±.3         | 58.9±.3          | -->
 
 For Temperature, with a moderate noise level of 30\%, the drop from T (Clean) to T (Noise-30\%) is generally small for most species. Deer, for example, goes from 70.2±.3 to 69.5±.3, and Stoat from 72.2±.5 to 71.6±.3. One reason for this robustness is that our Temperature metadata undergoes discretisation: the raw temperature values are grouped into categorical bins (*e.g.*, ``cold``, ``chilly``, ``warm``). Consequently, minor numerical fluctuations due to added noise may not necessarily result in a category change, mitigating its impact on model performance. At higher noise levels (60\% or 100\%), the model performance falls back to levels close to the ReID-AW baseline.
 
