@@ -34,7 +34,9 @@ To investigate the contribution of each metadata feature and to identify potenti
 
 
 *Table 2. Ablation study on different combinations of metadata features in CLIP-FT+MFA, CLIP-ReID+MFA and ReID-AW+MFA models. Temperature (T), Circadian Rhythm (C), and Face Orientation (F) features are progressively combined to analyze their individual and combined effects on model ReID performance.*
+
 ![Ablation Study - Metafeature](fig/ablation_metafeature.png)
+
 <!-- 
 *Table 2(a): CLIP-FT + MFA - mAP (%)*
 | T | C | F | Deer | Hare | Penguin | Pūkeko | Stoat | Wallaby |
@@ -77,7 +79,9 @@ The results of this ablation study are summarized in **Table 2**, which reveals 
 To evaluate the robustness of metadata and determine whether its benefits persist under noisy conditions, we introduced artificial noise into three metadata types: **Temperature (T)**, **Circadian Rhythm (C)**, and **Face Orientation (F)**. The noise levels were set at **30%**, **60%**, and **100%**, representing progressively higher levels of noise, the results are presented in **Table 3**.
 
 *Table 3. ReID-AW+MFA Performance with Noisy Metadata (mAP %)*
+
 ![Ablation Study - Metafeature](fig/ablation_noise.png)
+
 <!-- *Table 3(a): Temperature (T) - mAP (%)*
 | Species | ReID-AW | T (Clean) | T (Noise-30%) | T (Noise-60%) | T (Noise-100%) |
 |----------|---------|------------|----------------|----------------|-----------------|
