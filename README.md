@@ -5,7 +5,7 @@ The Metadata Augmented Animal Re-Identification (MAAR) dataset is a multimodal b
 
 ## Data Availability
 Our dataset is accessible through:
-* [Hugging face](https://huggingface.co/datasets/uqtwei2/PlantWild)
+* [Hugging face](https://huggingface.co/datasets/lucas0927/MetaWild)
 
 ## Supplementary Material
 
