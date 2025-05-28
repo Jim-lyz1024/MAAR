@@ -1,5 +1,5 @@
-title: MAAR Project
-description: Metadata Augmented Animal Re-Identification (MAAR)
+title: MetaWild Dataset
+description: A Multimodal Dataset for Animal Re-Identification with Environmental Metadata
 remote_theme: pages-themes/cayman@v0.2.0
 plugins:
 - jekyll-remote-theme
