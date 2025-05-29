@@ -22,5 +22,20 @@ This section provides detailed supplementary materials to support the main findi
 ## Method
 ![MFA Architecture](fig/MFA.png)
 
+## Metadata Distribution Visualizations
 
+### Temperature Distribution
+<div style="text-align: center;">
+  <img src="fig/Temperature_RainCloudPlot_page-0001.jpg" alt="Temperature Distribution" style="width: 80%; max-width: 700px; margin-top: 10px;">
+</div>
+
+### Circadian Rhythms Distribution
+<div style="text-align: center;">
+  <img src="fig\MultiSpecies_Day_Night_Distribution_page-0001.jpg" alt="Circadian Rhythms Distribution" style="width: 50%; max-width: 700px; margin-top: 10px;">
+</div>
+
+### Face Orientation Distribution
+<div style="text-align: center;">
+  <img src="fig\MultiSpecies_Face_Direction_Distribution_page-0001.jpg" alt="Face Orientation Distribution" style="width: 50%; max-width: 700px; margin-top: 10px;">
+</div>
 <!-- For inquiries about early access to the dataset for research purposes, please contact [contact information]. -->
