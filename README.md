@@ -90,4 +90,15 @@ Pose diversity introduces intra-class variability. By encoding orientation expli
   </p>
 </div>
 
+---
+
+## Licensing & Access
+
+The MetaWild dataset inherits its licensing terms from the [NZ-TrailCams dataset](https://lila.science/datasets/nz-trailcams), from which it was constructed.  
+Specifically, MetaWild complies with the:
+
+> **Community Data License Agreement – Permissive – Version 1.0**  
+> [Full License Text (CDLA-Permissive-1.0)](https://cdla.dev/permissive-1-0/)
+
+For detailed information on the licensing terms, please refer to the dataset card for MetaWild on [Hugging face](https://huggingface.co/datasets/lucas0927/MetaWild).
 <!-- For inquiries about early access to the dataset for research purposes, please contact [contact information]. -->
