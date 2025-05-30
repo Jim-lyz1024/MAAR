@@ -5,6 +5,8 @@ from .clip.simple_tokenizer import SimpleTokenizer as _Tokenizer
 from torch.nn import functional as F
 import math
 from .gated_attention import GatedCrossAttention
+from .gated_attention import VisualFeatureExpert
+from .gated_attention import TextualMetadataExpert
 
 _tokenizer = _Tokenizer()
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
@@ -137,6 +139,16 @@ class build_transformer(nn.Module):
         dataset_name = cfg.DATASETS.NAMES
         self.prompt_learner = PromptLearner(num_classes, dataset_name, clip_model.dtype, clip_model.token_embedding)
         self.text_encoder = TextEncoder(clip_model)
+        
+        self.visual_expert = VisualFeatureExpert(
+            input_dim=self.in_planes_proj,
+            hidden_dim=self.in_planes_proj // 2
+        )
+        
+        self.textual_expert = TextualMetadataExpert(
+            input_dim=self.in_planes_proj,
+            hidden_dim=self.in_planes_proj // 2
+        )
 
         # self.attn = CrossAttention (512, 512, 512)
         self.attn = GatedCrossAttention(
@@ -194,13 +206,15 @@ class build_transformer(nn.Module):
             prompts = self.prompt_learner(label, temperature_label, light_label, angle)
             text_features = self.text_encoder(prompts, self.prompt_learner.tokenized_prompts)
 
-            # Apply gated cross attention instead of regular cross attention
-            feat_proj = self.attn(feat_proj,text_features)
+            visual_features_adapted = self.visual_expert(feat_proj)
+            text_features_adapted = self.textual_expert(text_features)
+
+            feat_proj_meta = self.gated_attention(visual_features_adapted, text_features_adapted)
 
             cls_score = self.classifier(feat)
-            cls_score_proj = self.classifier_proj(feat_proj)
-            return [cls_score, cls_score_proj], [img_feature_last, img_feature, img_feature_proj], feat_proj
-
+            cls_score_proj = self.classifier_proj(feat_proj_meta)
+            
+            return [cls_score, cls_score_proj], [img_feature_last, img_feature, img_feature_proj], feat_proj_meta, text_features_adapted
         else:
             if self.neck_feat == 'after':
                 # print("Test with feature after BN")
@@ -250,27 +264,29 @@ def load_clip_to_cpu(backbone_name, h_resolution, w_resolution, vision_stride_si
 class PromptLearner(nn.Module):
     def __init__(self, num_class, dataset_name, dtype, token_embedding):
         super().__init__()
+        # "A photo of a {species} {individual id} in {temperature} temperature, with face direction {direction}, captured during the {time}."
+        
         if dataset_name == "atrw":
             ctx_init = "A photo of a X X X X tiger."
 
         elif dataset_name == "stoat":
-            # ctx_init = "A photo of a X X X X stoat, The temperature is X degrees, Humanity is X%, Rainfall is X mm, Angle is X"
-            ctx_init = "A photo of a X X X X stoat, The temperature is X degrees, with face direction X, taken during X"
+            ctx_init = "A photo of a X X X X stoat in X temperature, with face direction X, captured during the X."
         
         elif dataset_name == "deer":
-            ctx_init = "A photo of a X X X X deer, The temperature is X degrees, with face direction X, taken during X"
+            ctx_init = "A photo of a X X X X deer in X temperature, with face direction X, captured during the X."
         
         elif dataset_name == "wallaby":
-            ctx_init = "A photo of a X X X X wallaby, The temperature is X degrees, with face direction X, taken during X"
+            ctx_init = "A photo of a X X X X wallaby in X temperature, with face direction X, captured during the X."
             
         elif dataset_name == "penguin":
-            ctx_init = "A photo of a X X X X penguin, The temperature is X degrees, with face direction X, taken during X"
+            ctx_init = "A photo of a X X X X penguin in X temperature, with face direction X, captured during the X."
         
         elif dataset_name == "pukeko":
-            ctx_init = "A photo of a X X X X pukeko, The temperature is X degrees, with face direction X, taken during X"
+            ctx_init = "A photo of a X X X X pukeko in X temperature, with face direction X, captured during the X."
             
         elif dataset_name == "hare":
-            ctx_init = "A photo of a X X X X hare, The temperature is X degrees, with face direction X, taken during X"
+            ctx_init = "A photo of a X X X X hare in X temperature, with face direction X, captured during the X."
+
 
         elif dataset_name == "friesiancattle2017":
             ctx_init = "A photo of a X X X X cattle."

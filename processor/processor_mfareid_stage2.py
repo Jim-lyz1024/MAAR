@@ -93,7 +93,7 @@ def do_train_stage2(cfg,
         scheduler.step()
 
         model.train()
-        for n_iter, (img, vid, target_cam, target_view, temperature_label,   light_label, angle) in enumerate(train_loader_stage2):
+        for n_iter, (img, vid, target_cam, target_view, temperature_label, light_label, angle) in enumerate(train_loader_stage2):
             optimizer.zero_grad()
             optimizer_center.zero_grad()
             img = img.to(device)
@@ -111,31 +111,18 @@ def do_train_stage2(cfg,
                 target_view = target_view.to(device)
             else:
                 target_view = None
+                
             with amp.autocast(enabled=True):
-                score, feat, image_features = model(x=img, label=target, cam_label=target_cam, view_label=target_view, temperature_label=temperature_label,
-                                     light_label=light_label, angle=angle)
-                logits = image_features @ text_features.t()
-                loss = loss_fn(score, feat, target, target_cam, logits)
+                score, feat, meta_features, text_features = model(
+                    x=img, label=target, cam_label=target_cam, view_label=target_view, 
+                    temperature_label=temperature_label, light_label=light_label, angle=angle
+                )
                 
-                # Add loss debugging
-                print(f"Loss value: {loss.item()}")
+                logits = meta_features @ text_features.t()
                 
-                # Check if loss is valid
-                if not torch.isfinite(loss):
-                    print("Warning: Loss is infinite or NaN!")
-                    continue
+                loss = loss_fn(score, feat, target, target_cam, logits, meta_features, text_features)
 
             scaler.scale(loss).backward()
-            
-            # Add gradient debugging
-            total_norm = 0.
-            for p in model.parameters():
-                if p.grad is not None:
-                    param_norm = p.grad.data.norm(2)
-                    total_norm += param_norm.item() ** 2
-            total_norm = total_norm ** (1. / 2)
-            print(f"Gradient norm: {total_norm}")
-
             scaler.step(optimizer)
             scaler.update()
 
@@ -146,7 +133,6 @@ def do_train_stage2(cfg,
                 scaler.update()
 
             acc = (logits.max(1)[1] == target).float().mean()
-
             loss_meter.update(loss.item(), img.shape[0])
             acc_meter.update(acc, 1)
 

@@ -3,6 +3,63 @@ import torch.nn as nn
 import math
 from torch.nn import functional as F
 
+class TextualMetadataExpert(nn.Module):
+    def __init__(self, input_dim=512, hidden_dim=256):
+        super(TextualMetadataExpert, self).__init__()
+        
+        # MLP-based adapter with residual connections
+        self.adapter = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.LayerNorm(hidden_dim),
+            nn.ReLU(inplace=True),
+            nn.Dropout(0.1),
+            nn.Linear(hidden_dim, input_dim)
+        )
+        
+        # Initialize weights
+        self._init_weights()
+    
+    def _init_weights(self):
+        for m in self.modules():
+            if isinstance(m, nn.Linear):
+                nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+                if m.bias is not None:
+                    nn.init.constant_(m.bias, 0)
+    
+    def forward(self, text_features):
+        # Residual connection
+        adapted_features = self.adapter(text_features)
+        return text_features + adapted_features
+
+
+class VisualFeatureExpert(nn.Module):
+    def __init__(self, input_dim=512, hidden_dim=256):
+        super(VisualFeatureExpert, self).__init__()
+        
+        # MLP-based adapter with residual connections
+        self.adapter = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.LayerNorm(hidden_dim),
+            nn.ReLU(inplace=True),
+            nn.Dropout(0.1),
+            nn.Linear(hidden_dim, input_dim)
+        )
+        
+        # Initialize weights
+        self._init_weights()
+    
+    def _init_weights(self):
+        for m in self.modules():
+            if isinstance(m, nn.Linear):
+                nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+                if m.bias is not None:
+                    nn.init.constant_(m.bias, 0)
+    
+    def forward(self, visual_features):
+        # Residual connection
+        adapted_features = self.adapter(visual_features)
+        return visual_features + adapted_features
+
 class GatedCrossAttention(nn.Module):
     def __init__(self, d_in, d_out_kq, d_out_v, num_heads=8, dropout=0.1):
         super().__init__()
@@ -81,3 +138,21 @@ def get_attention_mask(seq_length):
     mask = torch.triu(mask, diagonal=1)
     mask = mask.masked_fill(mask == 1, float('-inf'))
     return mask
+
+def compute_cross_attention_loss(image_features, text_features, targets, temperature=0.07):
+    batch_size = image_features.shape[0]
+    
+    # Normalize features
+    image_features = F.normalize(image_features, p=2, dim=1)
+    text_features = F.normalize(text_features, p=2, dim=1)
+    
+    # Compute similarity scores
+    logits = torch.mm(image_features, text_features.t()) / temperature
+    
+    # Create labels for positive pairs
+    labels = torch.arange(batch_size, device=image_features.device)
+    
+    # Cross-entropy loss for alignment
+    loss = F.cross_entropy(logits, labels)
+    
+    return loss
