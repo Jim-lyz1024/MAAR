@@ -23,6 +23,9 @@ This section provides detailed supplementary materials to support the main findi
 - **Ablation Study:** This section presents the ablation study that explores the effect of various design choices and metadata features on ReID performance, please refer to the following link:  
   ➡️ [Supplementary Material - Ablation Study](./supplementary-ablation.html)
 
+- **Future Direction and Community Impact:** This section presents the future directions for the MetaWild project, including potential extensions, collaborations, and community engagement initiatives. For detailed information, please refer to the following link:  
+  ➡️ [Supplementary Material - Future Direction](./supplementary-futuredirection.html)
+
 ---
 
 ## Meta-Feature Adapter (MFA)
