@@ -2,6 +2,8 @@
 ## Introduction
 The MetaWild dataset is a multimodal benchmark designed to improve animal re-identification (Animal ReID) by integrating environmental metadata with visual data. Unlike existing datasets that rely solely on images, MetaWild includes 20,890 images spanning six representative species, each image is paired with metadata such as temperature and circadian rhythms, providing valuable context for distinguishing individual animals. Additionally, to facilitate the use of metadata in existing ReID methods, we propose the Meta-Feature Adapter (MFA), a lightweight module that can be incorporated into existing vision-language model (VLM)-based Animal ReID methods, allowing ReID models to leverage both environmental metadata and visual information to improve ReID performance. Our experiments on MetaWild show that incorporating metadata with MFA consistently improves ReID performance over using visual data alone. We hope that our benchmark can inspire further exploration of multimodal approaches for Animal ReID.
 
+---
+
 ## Data Availability
 Our dataset is accessible through:
 * [Hugging face](https://huggingface.co/datasets/lucas0927/MetaWild)
@@ -23,8 +25,15 @@ This section provides detailed supplementary materials to support the main findi
 
 ---
 
-## Method
-![MFA Architecture](fig/MFA.png)
+## Meta-Feature Adapter (MFA)
+To effectively leverage environmental metadata in Animal Re-Identification (ReID), we propose the **Meta-Feature Adapter (MFA)** — a lightweight, plug-and-play module designed to integrate textual metadata with visual representations. MFA is compatible with existing Vision-Language Models (VLMs) such as CLIP, and enables **multimodal feature fusion** by aligning textual metadata with visual features.
+
+<div style="text-align: center;">
+  <img src="fig/MFA.png" alt="MFA Architecture" style="width: 100%; max-width: 700px; margin-top: 10px;">
+  <p style="font-size: 14px; max-width: 100%; margin: 0 auto;">
+    Figure 1: Overview of the MFA architecture integrating visual and metadata branches using feature experts and gated cross-attention.
+  </p>
+</div>
 
 ---
 
@@ -44,6 +53,9 @@ These inter-species temperature patterns allow metadata to serve as a latent dom
 
 <div style="text-align: center;">
   <img src="fig/Temperature_RainCloudPlot_page-0001.jpg" alt="Temperature Distribution" style="width: 80%; max-width: 700px; margin-top: 10px;">
+  <p style="font-size: 14px; max-width: 100%; margin: 0 auto;">
+    Figure 2: Visualization of temperature distribution across species in the MetaWild dataset.
+  </p>
 </div>
 
 ### Circadian Rhythms Distribution
@@ -57,6 +69,9 @@ This metadata is valuable in cases where lighting affects visibility, helping mo
 
 <div style="text-align: center;">
   <img src="fig\MultiSpecies_Day_Night_Distribution_page-0001.jpg" alt="Circadian Rhythms Distribution" style="width: 50%; max-width: 700px; margin-top: 10px;">
+  <p style="font-size: 14px; max-width: 100%; margin: 0 auto;">
+    Figure 3: Circadian rhythms distribution across species in the MetaWild dataset, showing day/night activity patterns.
+  </p>
 </div>
 
 ### Face Orientation Distribution
@@ -70,7 +85,9 @@ Pose diversity introduces intra-class variability. By encoding orientation expli
 
 <div style="text-align: center;">
   <img src="fig\MultiSpecies_Face_Direction_Distribution_page-0001.jpg" alt="Face Orientation Distribution" style="width: 50%; max-width: 700px; margin-top: 10px;">
+  <p style="font-size: 14px; max-width: 100%; margin: 0 auto;">
+    Figure 4: Face orientation distribution across species in the MetaWild dataset.
+  </p>
 </div>
 
----
 <!-- For inquiries about early access to the dataset for research purposes, please contact [contact information]. -->
