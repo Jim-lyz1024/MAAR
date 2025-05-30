@@ -52,7 +52,7 @@ As shown in the raincloud plot, the temperature range under which animals are ca
 These inter-species temperature patterns allow metadata to serve as a latent domain cue, providing additional signal beyond visual appearance.
 
 <div style="text-align: center;">
-  <img src="fig/Temperature_RainCloudPlot_page-0001.jpg" alt="Temperature Distribution" style="width: 80%; max-width: 700px; margin-top: 10px;">
+  <img src="fig/Temperature_RainCloudPlot_page-0001.jpg" alt="Temperature Distribution" style="width: 70%; max-width: 700px; margin-top: 10px;">
   <p style="font-size: 14px; max-width: 100%; margin: 0 auto;">
     Figure 2: Visualization of temperature distribution across species in the MetaWild dataset.
   </p>
