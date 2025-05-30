@@ -6,6 +6,8 @@ The MetaWild dataset is a multimodal benchmark designed to improve animal re-ide
 Our dataset is accessible through:
 * [Hugging face](https://huggingface.co/datasets/lucas0927/MetaWild)
 
+---
+
 ## Supplementary Material
 
 <!-- Experiment settings: [Supplementary Material - Experiment](./supplementary-experiment.html) and 
@@ -19,23 +21,56 @@ This section provides detailed supplementary materials to support the main findi
 - **Ablation Study:** This section presents the ablation study that explores the effect of various design choices and metadata features on ReID performance, please refer to the following link:  
   ➡️ [Supplementary Material - Ablation Study](./supplementary-ablation.html)
 
+---
+
 ## Method
 ![MFA Architecture](fig/MFA.png)
 
+---
+
 ## Metadata Distribution Visualizations
+To better understand the role of environmental context in Animal ReID, we analyze the distribution of three metadata types included in the **MetaWild** dataset: **Temperature**, **Circadian Rhythms**, and **Face Orientation**. These features are selected based on ecological relevance and their ability to provide identity-discriminative cues, especially when visual signals are ambiguous or incomplete.
+
 
 ### Temperature Distribution
+As shown in the raincloud plot, the temperature range under which animals are captured varies significantly across species:
+
+- **Deer** tend to appear in higher temperature conditions (majority above 20°C), peaking at 22–27°C.
+- **Hares**, **Penguins**, and **Pūkeko** are primarily observed under moderate temperatures (7–14°C).
+- **Stoats** exhibit the broadest temperature range, from sub-zero to 21°C, suggesting strong environmental adaptability.
+- **Wallabies** show substantial presence in colder conditions, including a small portion captured at −2°C and −1°C.
+
+These inter-species temperature patterns allow metadata to serve as a latent domain cue, providing additional signal beyond visual appearance.
+
 <div style="text-align: center;">
   <img src="fig/Temperature_RainCloudPlot_page-0001.jpg" alt="Temperature Distribution" style="width: 80%; max-width: 700px; margin-top: 10px;">
 </div>
 
 ### Circadian Rhythms Distribution
+The distribution of day and night appearances reveals circadian preferences:
+
+- **Stoats** and **Wallabies** are predominantly active during the **day**, with Stoats showing a ~75% day-to-night ratio.
+- **Deer** and **Hares** are more active at **night**, both with nearly 2:1 night-to-day ratios.
+- **Penguins** and **Pūkeko** have relatively balanced activity across day and night, slightly favoring daylight.
+
+This metadata is valuable in cases where lighting affects visibility, helping models reason about behavior-related appearance variations.
+
 <div style="text-align: center;">
   <img src="fig\MultiSpecies_Day_Night_Distribution_page-0001.jpg" alt="Circadian Rhythms Distribution" style="width: 50%; max-width: 700px; margin-top: 10px;">
 </div>
 
 ### Face Orientation Distribution
+Face orientation statistics highlight capture angle biases:
+
+- **Stoats**, **Deer**, and **Hares** predominantly appear in **side views** (Left/Right), while **Front** and **Back** views are less common.
+- **Wallabies** show a strong **Back** view dominance, likely due to camera positioning on trail exits.
+- **Penguins** and **Pūkeko** exhibit more balanced directional coverage but still favor **Right** over **Front**.
+
+Pose diversity introduces intra-class variability. By encoding orientation explicitly, models can better align visual representations across individuals.
+
 <div style="text-align: center;">
   <img src="fig\MultiSpecies_Face_Direction_Distribution_page-0001.jpg" alt="Face Orientation Distribution" style="width: 50%; max-width: 700px; margin-top: 10px;">
 </div>
+
+---
 <!-- For inquiries about early access to the dataset for research purposes, please contact [contact information]. -->
