@@ -6,8 +6,8 @@
 ### Future Research Directions
 - A primary objective for future work involves expanding MetaWild through collaboration with international wildlife monitoring networks. By integrating camera trap data from diverse geographical regions, such as African savannas, Amazon rainforests or Arctic tundra, we aim to create a truly global multimodal wildlife dataset. Partnerships with organizations could facilitate access to geographically diverse datasets while ensuring ethical data sharing practices.
 - The integration of camera location data opens unprecedented opportunities for incorporating rich environmental metadata that extends far beyond individual camera capabilities. By leveraging geospatial databases and remote sensing data, we can augment each image with comprehensive environmental context including:
-  - **Terrain and Habitat Characteristics:** Vegetation density, land cover type, and proximity to water sources.
   - **Weather Conditions**: Humidity, wind speed, and precipitation patterns.
+  - **Terrain and Habitat Characteristics:** Vegetation density, land cover type, and proximity to water sources.
   - **Temporal Context**: Seasonal variations and migration patterns.
 
 ---
