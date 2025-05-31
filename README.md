@@ -38,7 +38,8 @@ To effectively leverage environmental metadata in Animal Re-Identification (ReID
   </p>
 </div>
 
-### Interactive Results Visualization
+### Multimodal Integration Results
+We evaluate the influence of environmental metadata on Animal ReID performance using the MetaWild dataset by incorporating MFA into existing ReID methods. Experimental results show that incorporating environmental metadata consistently improves ReID accuracy across multiple baseline methods and all six species.
 
 <div align="center">
   <table>
@@ -64,6 +65,7 @@ To effectively leverage environmental metadata in Animal Re-Identification (ReID
     </tr>
   </table>
 </div>
+
 
 ---
 
