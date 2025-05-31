@@ -81,5 +81,6 @@ We outline the training process of Meta-Feature Adapter (MFA) in Algorithm 1.
   <img src="fig/algorithm.png" alt="algorithm" style="width: 100%; max-width: 700px; margin-top: 10px;">
 </div>
 
+
 [^1]: Shermeister, B., Mor, D., & Levy, O. (2024). Leveraging camera traps and artificial intelligence to explore thermoregulation behaviour. Journal of Animal Ecology, 93(9), 1246-1261.
 [^2]: Lagerspetz, K. Y., & Vainio, L. A. (2006). Thermal behaviour of crustaceans. Biological Reviews, 81(2), 237-258.

@@ -70,7 +70,7 @@ OUTPUT_DIR: '/data/Hare/MFA-ReID'  # Results output path
 ```
 For intra-species experiments, we modify the ``NAMES`` parameter to specify which of the six species (Deer, Hare, Penguin, Pūkeko, Stoat, or Wallaby) to use for training and evaluation, along with its corresponding data directory. For inter-species experiments, we created combined datasets that also need to be specified in the ``NAMES`` parameter. For instance, to obtain the results of inter-species re-identification, we created a training set by merging all images from three source species (Deer, Hare, and Penguin), while validation was performed using the original query and gallery sets from the remaining three species (Stoat, Pūkeko, and Wallaby).
 
-
+ 
 [^1]: Li, S., Sun, L., & Li, Q. (2023, June). Clip-reid: exploiting vision-language model for image re-identification without concrete text labels. In Proceedings of the AAAI conference on artificial intelligence (Vol. 37, No. 1, pp. 1405-1413).
 [^2]: Jiao, B., Liu, L., Gao, L., Wu, R., Lin, G., Wang, P., & Zhang, Y. (2023). Toward re-identifying any animal. Advances in Neural Information Processing Systems, 36, 40042-40053.
 [^3]: Radford, A., Kim, J. W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., ... & Sutskever, I. (2021, July). Learning transferable visual models from natural language supervision. In International conference on machine learning (pp. 8748-8763). PMLR.

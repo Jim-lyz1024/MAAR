@@ -10,6 +10,16 @@
   - **Terrain and Habitat Characteristics:** Vegetation density, land cover type, and proximity to water sources.
   - **Temporal Context**: Seasonal variations and migration patterns.
 
+### Discussion on Shortcut Learning from Metadata
+While metadata provides valuable contextual cues for Animal ReID, it also introduces a potential risk of **shortcut learning**. Specifically, the model might learn *spurious correlations* [1] between environmental metadata and individual identity, rather than focusing on the underlying visual appearance of the animal.
+
+For instance, certain individuals may appear predominantly under specific environmental conditions (*e.g.*, cool temperatures or nighttime). In such cases, the model might rely on these co-occurrence patterns as shortcuts for identification, which can lead to misidentification when those individuals are later observed under novel conditions.
+
+We are aware of this risk and took concrete steps to mitigate it:
+- **Dataset construction with metadata balancing**: During the curation of the MetaWild dataset, we explicitly selected individuals that appear under a diverse range of metadata conditions (e.g., different temperatures, lighting times, and orientations). This helps reduce the bias between identity and metadata and ensures that identity is not entangled with a narrow context.
+- **Ablation study on effect of noisy metadata**: In ablation study, we conducted controlled experiments by injecting noise into the metadata to examine its effect on model performance. The observed degradation confirms that the model does leverage metadata cues, but also demonstrates the benefit of using clean, well-structured metadata, further validating our careful preprocessing and annotation pipeline.
+
+
 ---
 
 # Applications and Community Impact
@@ -22,3 +32,7 @@
 **Industry Applications:** Beyond academic research, MetaWild also has  potential for commercial wildlife monitoring applications. Companies developing automated wildlife monitoring systems can use the dataset to train and validate their products, while tourism operators can leverage the technology for enhanced wildlife viewing experiences. The agricultural sector can benefit from improved crop protection systems that can identify and track wildlife species that may impact agricultural operations.
 
 > Through these diverse applications, MetaWild aims to start up a new generation of environmentally-aware wildlife monitoring systems that can contribute to global conservation efforts while advancing the state-of-the-art in multimodal machine learning research.
+
+---
+
+[1] Ye, W., Zheng, G., Cao, X., Ma, Y., & Zhang, A. (2024). Spurious correlations in machine learning: A survey. arXiv preprint arXiv:2402.12715.
