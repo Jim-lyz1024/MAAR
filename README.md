@@ -38,8 +38,7 @@ To effectively leverage environmental metadata in Animal Re-Identification (ReID
   </p>
 </div>
 
----
-## Interactive Results Visualization
+### Interactive Results Visualization
 
 <div align="center">
   <table>
@@ -64,19 +63,6 @@ To effectively leverage environmental metadata in Animal Re-Identification (ReID
       </td>
     </tr>
   </table>
-</div>
-
-<div align="center">
-  
-### CLIP-FT Performance
-[View Interactive Chart](https://jim-lyz1024.github.io/MetaWild/fig/clip_ft_radar.html)
-
-### CLIP-ReID Performance  
-[View Interactive Chart](https://jim-lyz1024.github.io/MetaWild/fig/clip_reid_radar.html)
-
-### ReID-AW Performance
-[View Interactive Chart](https://jim-lyz1024.github.io/MetaWild/fig/reid_aw_radar.html)
-
 </div>
 
 ---

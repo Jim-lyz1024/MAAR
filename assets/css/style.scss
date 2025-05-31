@@ -1,0 +1,37 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* 居中所有标题 */
+.main-content {
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+  }
+}
+
+/* 可选：仅居中特定级别的标题 */
+/*
+.main-content h1 {
+  text-align: center;
+}
+
+.main-content h2 {
+  text-align: center;
+}
+*/
+
+/* 可选：为居中的标题添加一些额外样式 */
+.main-content {
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* 为一级标题添加特殊样式 */
+  h1 {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
