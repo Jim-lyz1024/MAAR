@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIP-FT Performance</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        .title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1em;
+            font-weight: 500;
+        }
+        .legend-color {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+        }
+        .improvement {
+            background: #e8f5e8;
+            border-left: 4px solid #27ae60;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .improvement-text {
+            margin: 0;
+            color: #27ae60;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">CLIP-FT Performance Comparison</div>
+        <div class="chart-wrapper">
+            <canvas id="clipFtChart"></canvas>
+        </div>
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: rgba(54, 162, 235, 0.8);"></div>
+                <span>CLIP-FT</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: rgba(255, 99, 132, 0.8);"></div>
+                <span>CLIP-FT+MFA</span>
+            </div>
+        </div>
+        <div class="improvement">
+            <p class="improvement-text">Average mAP improvement: +3.5% with MFA</p>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            species: ['Deer', 'Hare', 'Penguin', 'Pūkeko', 'Stoat', 'Wallaby'],
+            'CLIP-FT': [63.2, 56.7, 44.0, 56.8, 68.6, 55.5],
+            'CLIP-FT+MFA': [66.7, 58.4, 46.0, 58.2, 69.8, 56.8]
+        };
+
+        new Chart(document.getElementById('clipFtChart'), {
+            type: 'radar',
+            data: {
+                labels: data.species,
+                datasets: [{
+                    label: 'CLIP-FT',
+                    data: data['CLIP-FT'],
+                    borderColor: 'rgba(54, 162, 235, 0.8)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.15)',
+                    pointBackgroundColor: 'rgba(54, 162, 235, 0.8)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 3,
+                    borderWidth: 3
+                }, {
+                    label: 'CLIP-FT+MFA',
+                    data: data['CLIP-FT+MFA'],
+                    borderColor: 'rgba(255, 99, 132, 0.8)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.15)',
+                    pointBackgroundColor: 'rgba(255, 99, 132, 0.8)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 3,
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 75,
+                        min: 40,
+                        ticks: {
+                            stepSize: 5,
+                            font: {
+                                size: 12
+                            }
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0,0,0,0.1)'
+                        },
+                        angleLines: {
+                            color: 'rgba(0,0,0,0.1)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.r.toFixed(1) + '%';
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    line: {
+                        borderWidth: 3,
+                        tension: 0.1
+                    },
+                    point: {
+                        radius: 6,
+                        hoverRadius: 10
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

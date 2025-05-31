@@ -105,3 +105,45 @@ Specifically, MetaWild complies with the:
 
 For detailed information on the licensing terms, please refer to the dataset card for MetaWild on [Hugging face](https://huggingface.co/datasets/lucas0927/MetaWild).
 <!-- For inquiries about early access to the dataset for research purposes, please contact [contact information]. -->
+
+
+## Interactive Results Visualization
+
+<div align="center">
+  
+### CLIP-FT Performance
+[View Interactive Chart](https://yourusername.github.io/yourrepo/docs/clip_ft_radar.html)
+
+### CLIP-ReID Performance  
+[View Interactive Chart](https://yourusername.github.io/yourrepo/docs/clip_reid_radar.html)
+
+### ReID-AW Performance
+[View Interactive Chart](https://yourusername.github.io/yourrepo/docs/reid_aw_radar.html)
+
+</div>
+
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <a href="fig\clip_ft_radar.html">
+          <img src="https://img.shields.io/badge/CLIP--FT-Interactive%20Chart-blue?style=for-the-badge" alt="CLIP-FT Results"/>
+        </a>
+        <br><sub><b>CLIP-FT vs CLIP-FT+MFA</b></sub>
+      </td>
+      <td align="center">
+        <a href="fig\clip_reid_radar.html">
+          <img src="https://img.shields.io/badge/CLIP--ReID-Interactive%20Chart-green?style=for-the-badge" alt="CLIP-ReID Results"/>
+        </a>
+        <br><sub><b>CLIP-ReID vs CLIP-ReID+MFA</b></sub>
+      </td>
+      <td align="center">
+        <a href="fig\reid_aw_radar.html">
+          <img src="https://img.shields.io/badge/ReID--AW-Interactive%20Chart-orange?style=for-the-badge" alt="ReID-AW Results"/>
+        </a>
+        <br><sub><b>ReID-AW vs ReID-AW+MFA</b></sub>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReID-AW Performance</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff3e0 0%, #ffcc80 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        .title {
+            text-align: center;
+            color: #f57c00;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1em;
+            font-weight: 500;
+        }
+        .legend-color {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+        }
+        .improvement {
+            background: #fff3e0;
+            border-left: 4px solid #f57c00;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .improvement-text {
+            margin: 0;
+            color: #f57c00;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">ReID-AW Performance Comparison</div>
+        <div class="chart-wrapper">
+            <canvas id="reidAwChart"></canvas>
+        </div>
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: rgba(255, 159, 64, 0.8);"></div>
+                <span>ReID-AW</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: rgba(99, 99, 99, 0.8);"></div>
+                <span>ReID-AW+MFA</span>
+            </div>
+        </div>
+        <div class="improvement">
+            <p class="improvement-text">Average mAP improvement: +4.9% with MFA</p>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            species: ['Deer', 'Hare', 'Penguin', 'Pūkeko', 'Stoat', 'Wallaby'],
+            'ReID-AW': [67.5, 63.3, 48.8, 58.5, 69.5, 58.4],
+            'ReID-AW+MFA': [72.4, 66.2, 55.3, 61.8, 74.1, 63.5]
+        };
+
+        new Chart(document.getElementById('reidAwChart'), {
+            type: 'radar',
+            data: {
+                labels: data.species,
+                datasets: [{
+                    label: 'ReID-AW',
+                    data: data['ReID-AW'],
+                    borderColor: 'rgba(255, 159, 64, 0.8)',
+                    backgroundColor: 'rgba(255, 159, 64, 0.15)',
+                    pointBackgroundColor: 'rgba(255, 159, 64, 0.8)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 3,
+                    borderWidth: 3
+                }, {
+                    label: 'ReID-AW+MFA',
+                    data: data['ReID-AW+MFA'],
+                    borderColor: 'rgba(99, 99, 99, 0.8)',
+                    backgroundColor: 'rgba(99, 99, 99, 0.15)',
+                    pointBackgroundColor: 'rgba(99, 99, 99, 0.8)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 3,
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 80,
+                        min: 45,
+                        ticks: {
+                            stepSize: 5,
+                            font: {
+                                size: 12
+                            }
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0,0,0,0.1)'
+                        },
+                        angleLines: {
+                            color: 'rgba(0,0,0,0.1)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.r.toFixed(1) + '%';
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    line: {
+                        borderWidth: 3,
+                        tension: 0.1
+                    },
+                    point: {
+                        radius: 6,
+                        hoverRadius: 10
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

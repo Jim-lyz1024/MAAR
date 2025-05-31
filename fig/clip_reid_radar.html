@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIP-ReID Performance</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        .title {
+            text-align: center;
+            color: #1976d2;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1em;
+            font-weight: 500;
+        }
+        .legend-color {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+        }
+        .improvement {
+            background: #e3f2fd;
+            border-left: 4px solid #1976d2;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .improvement-text {
+            margin: 0;
+            color: #1976d2;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">CLIP-ReID Performance Comparison</div>
+        <div class="chart-wrapper">
+            <canvas id="clipReidChart"></canvas>
+        </div>
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: rgba(75, 192, 192, 0.8);"></div>
+                <span>CLIP-ReID</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: rgba(153, 102, 255, 0.8);"></div>
+                <span>CLIP-ReID+MFA</span>
+            </div>
+        </div>
+        <div class="improvement">
+            <p class="improvement-text">Average mAP improvement: +4.3% with MFA</p>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            species: ['Deer', 'Hare', 'Penguin', 'Pūkeko', 'Stoat', 'Wallaby'],
+            'CLIP-ReID': [65.2, 60.0, 44.8, 57.6, 67.5, 56.9],
+            'CLIP-ReID+MFA': [69.4, 63.2, 50.3, 59.8, 71.5, 61.8]
+        };
+
+        new Chart(document.getElementById('clipReidChart'), {
+            type: 'radar',
+            data: {
+                labels: data.species,
+                datasets: [{
+                    label: 'CLIP-ReID',
+                    data: data['CLIP-ReID'],
+                    borderColor: 'rgba(75, 192, 192, 0.8)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.15)',
+                    pointBackgroundColor: 'rgba(75, 192, 192, 0.8)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 3,
+                    borderWidth: 3
+                }, {
+                    label: 'CLIP-ReID+MFA',
+                    data: data['CLIP-ReID+MFA'],
+                    borderColor: 'rgba(153, 102, 255, 0.8)',
+                    backgroundColor: 'rgba(153, 102, 255, 0.15)',
+                    pointBackgroundColor: 'rgba(153, 102, 255, 0.8)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 3,
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 75,
+                        min: 40,
+                        ticks: {
+                            stepSize: 5,
+                            font: {
+                                size: 12
+                            }
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0,0,0,0.1)'
+                        },
+                        angleLines: {
+                            color: 'rgba(0,0,0,0.1)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.r.toFixed(1) + '%';
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    line: {
+                        borderWidth: 3,
+                        tension: 0.1
+                    },
+                    point: {
+                        radius: 6,
+                        hoverRadius: 10
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
