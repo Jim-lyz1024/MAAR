@@ -73,5 +73,13 @@ These results highlight that metadata can substantially improve ReID performance
 
 <!-- The overall results show that metadata can improve re-identification performance when reliable. Face Orientation benefits certain species (Deer, Stoat, Wallaby) but is ineffective for Pūkeko and Penguin, suggesting that not all metadata features are equally applicable across species. For practical applications, these findings emphasise the importance of careful metadata selection. When metadata is well-structured and correlates with identity-distinguishing traits, it provides a meaningful boost to re-identification performance. However, metadata that is difficult to annotate consistently or lacks sufficient intra-class variation may fail to contribute or even degrade performance under noise. These insights highlight the necessity of robust annotation protocols and species-specific considerations when integrating environmental metadata into ReID models. -->
 
+---
+
+## Algorithm
+We outline the training process of Meta-Feature Adapter (MFA) in Algorithm 1.
+<div style="text-align: center;">
+  <img src="fig/algorithm.png" alt="algorithm" style="width: 100%; max-width: 700px; margin-top: 10px;">
+</div>
+
 [^1]: Shermeister, B., Mor, D., & Levy, O. (2024). Leveraging camera traps and artificial intelligence to explore thermoregulation behaviour. Journal of Animal Ecology, 93(9), 1246-1261.
 [^2]: Lagerspetz, K. Y., & Vainio, L. A. (2006). Thermal behaviour of crustaceans. Biological Reviews, 81(2), 237-258.
